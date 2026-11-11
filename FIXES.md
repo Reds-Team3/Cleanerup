@@ -95,7 +95,7 @@ The fixed version:
 3. Configuration: **Release**
 4. Platform: **x64**
 5. Build > Build Solution (Ctrl+Shift+B)
-6. Output: `x64\Release\Cleanerup.exe`
+6. Output: `x64\Release\WinOptimize.exe`
 
 ## Testing
 
@@ -105,7 +105,7 @@ To verify it works:
 echo test data > C:\temp\testfile.txt
 
 # Run Cleanerup
-Cleanerup.exe
+WinOptimize.exe
 
 # Verify file is gone and unrecoverable
 ```
