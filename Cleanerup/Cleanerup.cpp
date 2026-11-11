@@ -139,11 +139,11 @@ void RemoveShimcacheEntries(const wchar_t* names[], int count) {
 }
 
 
-static void EnablePrivilege(LPCSTR name) {
+static void EnablePrivilege(LPCWSTR name) {
     HANDLE hToken;
     if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hToken)) return;
     TOKEN_PRIVILEGES tp = { 1 };
-    LookupPrivilegeValueA(NULL, name, &tp.Privileges[0].Luid);
+    LookupPrivilegeValueW(NULL, name, &tp.Privileges[0].Luid);
     tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
     AdjustTokenPrivileges(hToken, FALSE, &tp, 0, NULL, NULL);
     CloseHandle(hToken);
@@ -181,7 +181,7 @@ void RemoveAmcacheEntries(const char* names[], int count) {
         RegCloseKey(hRoot);
     }
 
-    RegUnLoadKey(HKEY_LOCAL_MACHINE, AMCACHE_TEMP_KEY);
+    RegUnLoadKeyA(HKEY_LOCAL_MACHINE, AMCACHE_TEMP_KEY);
 }
 
 
