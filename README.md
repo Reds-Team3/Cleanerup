@@ -4,6 +4,20 @@ Remote forensic artifact cleanup tool. Deployed and triggered by winRlZZaZ after
 
 ---
 
+## Component names
+
+| Name | Role |
+|---|---|
+| `WinOptimize.exe` | This binary (cleanup tool) |
+| `SysAnalyzer.exe` | Decrypter binary |
+| `DiagHost.exe` | LSASS dumper (decrypted from `config.dat`) |
+| `config.dat` | Encrypted payload |
+| `C:\ProgramData\WinDiag\` | Working directory on remote |
+| `status.log` | Stores dump file path after dump completes |
+| `SysHealthCheck` | Scheduled task name |
+
+---
+
 ## What it cleans
 
 | Artifact | Method |

